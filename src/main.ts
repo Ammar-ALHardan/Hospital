@@ -1,6 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideHttpClient } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(AngularSvgIconModule.forRoot()), 
+    provideHttpClient() // Required for HTTP requests
+  ],
+});
