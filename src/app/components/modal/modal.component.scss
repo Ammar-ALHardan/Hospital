@@ -1,0 +1,67 @@
+dialog {
+    z-index: 9;
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+
+    &[open]:not(.exist-animation) {
+        animation: fadeInUp 0.3s 0.2s ease both;
+
+        &::backdrop {
+            animation: fadeInCustom 0.5s ease both;
+        }
+    }
+
+    &.exist-animation {
+        animation: fadeOutDown 0.3s ease both;
+
+        &::backdrop {
+            animation: fadeOutCustom 0.5s ease both;
+        }
+    }
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+// Keyframes for animations
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes fadeInCustom {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes fadeOutCustom {
+    0% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
